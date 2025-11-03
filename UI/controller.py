@@ -29,3 +29,17 @@ class Controller:
 
     # Altre Funzioni Event Handler
     # TODO
+    def mostra(self):
+        lista_auto = self._model.get_automobili()
+        list_view = ft.ListView()
+        for item in lista_auto:
+            list_view.controls.append(ft.Text(f"{item.marca} {item.modello} {item.anno} {item.posti}"))
+        self._view.update()
+
+    def cerca(self):
+        lista_auto_modello = self._model.cerca_automobili_per_modello(modello=self._model.nome)
+        list_view_modello = ft.ListView()
+        for items in lista_auto_modello:
+            list_view_modello.controls.append(ft.Text(f"{items.marca} {items.modello}"))
+        self._view.update()
+

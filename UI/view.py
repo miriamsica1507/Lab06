@@ -1,5 +1,6 @@
 import flet as ft
 from UI.alert import AlertManager
+from model.model import Autonoleggio
 
 '''
     VIEW:
@@ -64,6 +65,8 @@ class View:
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
         # TODO
+        btn_mostra = ft.ElevatedButton("Mostra", on_click=self.controller.mostra)
+        btn_cerca = ft.ElevatedButton("Cerca", on_click=self.controller.cerca)
 
         # --- LAYOUT ---
         self.page.add(
@@ -83,10 +86,20 @@ class View:
 
             # Sezione 3
             # TODO
+            ft.Text("Mostra le Automobili", size=20),
+            ft.Row(spacing=200,
+                   controls=[btn_mostra, self.lista_auto],
+                   alignment=ft.MainAxisAlignment.CENTER),
+            ft.Divider(),
 
             # Sezione 4
             # TODO
-        )
+            ft.Text("Cerca per Modello", size=20),
+            ft.Row(spacing=200,
+                   controls=[btn_cerca, self.input_modello_auto, self.lista_auto_ricerca],
+                   alignment=ft.MainAxisAlignment.CENTER
+                   ),
+            ft.Divider())
 
     def cambia_tema(self, e):
         self.page.theme_mode = ft.ThemeMode.DARK if self.toggle_cambia_tema.value else ft.ThemeMode.LIGHT
